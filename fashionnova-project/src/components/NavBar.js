@@ -1,10 +1,14 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import { NavLink, Link } from 'react-router-dom';
 
 function NavBar() {
   return (
     <nav className="App-nav">
       <ul className="App-nav-list">
+        <li>
+          <NavLink to='/home'>Home</NavLink>
+        </li>
         <li>
           <a href="#new">New Arrivals</a>
         </li>
@@ -18,7 +22,7 @@ function NavBar() {
           <a href="#sale">Sale</a>
         </li>
         <li>
-          <a href="#about-us">About Us</a>
+          <Link to='/about'>About Us</Link>
         </li>
       </ul>
       <SearchBar />
