@@ -17,6 +17,9 @@ function NavBar() {
         <li>
           <a href="#sale">Sale</a>
         </li>
+        <li>
+          <a href="#about-us">About Us</a>
+        </li>
       </ul>
       <SearchBar />
     </nav>
