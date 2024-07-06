@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
@@ -11,9 +11,16 @@ import Wallet from "./pages/Wallet";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import Men from "./pages/Men";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  //Setting up preliminary authentication for now
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -25,7 +32,17 @@ function App() {
           <Route path="/men" element={<Men />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/wallet" element={<Wallet />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              isAuthenticated ? (
+                <Profile isAuthenticated={isAuthenticated} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
         </Routes>
       </BrowserRouter>
     </div>
