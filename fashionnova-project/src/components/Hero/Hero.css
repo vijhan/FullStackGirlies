@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'holly-script';
+    src: url('../Assets/holly-script.regular.ttf');
+}
+@font-face {
+    font-family: 'cute-rabbit';
+    src: url('../Assets/cute-rabbit.regular.ttf');
+}
+.hero{
+    height: 60vh;
+    background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
+    display: flex;
+}
+
+.hero-left{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    padding-left: 100px;
+    margin-left: 10%;
+    line-height: 0px;
+}
+
+.hero-left h2{
+    color: #090909;
+    font-size: 70px;
+    font-weight: 100;
+    margin-top: 50px;
+    font-family: 'cute-rabbit';
+}
+
+.hero-left p{
+    color: #171717;
+    font-size: 100px;
+    margin-top: 0%;
+    margin-bottom: 10%;
+    font-family: 'holly-script';
+}
+.hero-latest-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 210px;
+    height: 60px;
+    border-radius: 75px;
+    margin-bottom: 50px;
+    margin-left: 200px;
+    background: #81bbda;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.hero-right{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-right img{
+    max-width: 70%;
+    margin-right: 70%;
+}
