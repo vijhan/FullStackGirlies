@@ -10,7 +10,15 @@ const Popular = () => {
         <hr />
         <div className="popular-item">
             {data_product.map((item) => {
-                return <Item key={item} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
+                 
+                     
+                    for(let i = 1; i<5; i++){
+                        if(item.id===i){
+                            return <Item key={item} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
+                        }
+                    }
+                    
+                
             })}
         </div>
         <div className='white-space'></div>
