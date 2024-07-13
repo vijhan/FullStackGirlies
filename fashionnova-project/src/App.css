@@ -75,49 +75,90 @@
   background: #000000;
 }
 
-.login {
-  text-align: center;
+.login,
+.register {
+  max-width: 400px;
+  margin: 0 auto;
   padding: 20px;
-}
-
-.login-form {
-  display: inline-block;
-  text-align: left;
-  background-color: #f8f8f8;
-  padding: 20px;
-  border-radius: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.login-field {
+.login h2,
+.register h2 {
+  margin-bottom: 20px;
+}
+
+.login-form,
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-field,
+.register-field {
   margin-bottom: 15px;
 }
 
-.login-field label {
-  display: block;
+.login-field label,
+.register-field label {
   margin-bottom: 5px;
-  color: #333;
+  font-weight: bold;
 }
 
-.login-input {
-  width: 100%;
-  padding: 8px;
+.login-input,
+.register-input {
+  padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.login-button {
-  width: 100%;
+.login-button,
+.register-button {
   padding: 10px;
   font-size: 16px;
+  background-color: #007bff;
   color: white;
-  background-color: #282c34;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.login-button:hover {
-  background-color: #1c2025;
+.login-button:hover,
+.register-button:hover {
+  background-color: #0056b3;
+}
+
+.register-link {
+  margin-top: 20px;
+}
+
+.register-link p {
+  font-size: 14px;
+  color: #333;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+.logout-button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
 }
