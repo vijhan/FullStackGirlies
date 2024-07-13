@@ -1,6 +1,5 @@
-// src/components/login.js
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
@@ -9,8 +8,13 @@ const Login = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "user@example.com" && password === "password") {
-      onLogin(); //this is going to trigger the authentication logic once set up
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
+    if (user) {
+      onLogin();
+      localStorage.setItem("loggedInUser", email);
       setIsLoggedIn(true);
     } else {
       alert("Invalid email or password");
@@ -49,6 +53,11 @@ const Login = ({ onLogin }) => {
           Login
         </button>
       </form>
+      <div className="register-link">
+        <p>
+          Don't have an account? <Link to="/register">Register here</Link>
+        </p>
+      </div>
     </div>
   );
 };
