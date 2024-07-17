@@ -11,6 +11,7 @@ import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import Men from "./pages/Men";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 function App() {
@@ -20,11 +21,17 @@ function App() {
     setIsAuthenticated(true);
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
+
+  const handleRegister = () => {};
+
   return (
     <div className="App">
       <BrowserRouter>
-      <Header/>
-      <NavBar/>
+        <Header />
+        <NavBar />
         <Routes>
           <Route index element={<Homepage />} />
           <Route path="/home" element={<Homepage />} />
@@ -37,15 +44,22 @@ function App() {
             path="/profile"
             element={
               isAuthenticated ? (
-                <Profile isAuthenticated={isAuthenticated} />
+                <Profile
+                  isAuthenticated={isAuthenticated}
+                  onLogout={handleLogout}
+                />
               ) : (
                 <Navigate to="/login" />
               )
             }
           />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route
+            path="/register"
+            element={<Register onRegister={handleRegister} />}
+          />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
   );
