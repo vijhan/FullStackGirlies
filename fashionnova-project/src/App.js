@@ -13,6 +13,7 @@ import Men from "./pages/Men";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import Product from "./pages/Product";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -40,6 +41,9 @@ function App() {
           <Route path="/men" element={<Men />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/wallet" element={<Wallet />} />
+          <Route path="/product" element={<Product/>}>
+              <Route path=":productId" element={<Product/>}/>
+          </Route>
           <Route
             path="/profile"
             element={
