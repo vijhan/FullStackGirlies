@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Item from '../components/Item/Item'
 import data_product from '../components/Assets/data'
 import dropdown_icon from '../components/Assets/dropdown_icon.png'
 import './CSS/Women.css'
 
-const Women = () => {
+const Men = () => {
+
   return (
-    <>
+    <> 
         <div className="shop-category">
           <div className="shopcategory-indexSort">
             <p>
@@ -19,7 +20,7 @@ const Women = () => {
           <div className="shopcategory-products">
             {data_product.map((item,i) => {
               for(let i = 1; i<=data_product.length; i++){
-                if(item.id===i && item.category==="Women"){
+                if(item.id===i && item.category==="Men"){
                     return <Item key={item} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
                 }
             }
@@ -30,9 +31,8 @@ const Women = () => {
             Explore More
           </div>
         </div>
-        
     </>
   )
 }
 
-export default Women
+export default Men
