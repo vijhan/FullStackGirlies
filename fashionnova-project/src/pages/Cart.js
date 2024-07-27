@@ -30,9 +30,9 @@ const Cart = () => {
               </div>
               <button
                 onClick={() => removeFromCart(item.id, item.size)}
-                className="remove-button"
+                className="cart-item-remove"
               >
-                Remove
+                X
               </button>
             </div>
           ))

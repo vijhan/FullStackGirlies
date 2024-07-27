@@ -27,7 +27,7 @@ const ShopContextProvider = (props) => {
       const existingItem = prevCart.find(
         (item) => item.id === id && item.size === size
       );
-      if (existingItem.quantity > 1) {
+      if (existingItem && existingItem.quantity > 1) {
         return prevCart.map((item) =>
           item.id === id && item.size === size
             ? { ...item, quantity: item.quantity - 1 }
