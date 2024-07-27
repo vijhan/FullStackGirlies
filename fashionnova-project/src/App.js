@@ -13,10 +13,12 @@ import Men from "./pages/Men";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import ShopContextProvider from "../src/context/ShopContext";
+import Product from "./pages/Product";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  //Setting up preliminary authentication for now
+
   const handleLogin = () => {
     setIsAuthenticated(true);
   };
@@ -29,38 +31,43 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <NavBar />
-        <Routes>
-          <Route index element={<Homepage />} />
-          <Route path="/home" element={<Homepage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/women" element={<Women />} />
-          <Route path="/men" element={<Men />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wallet" element={<Wallet />} />
-          <Route
-            path="/profile"
-            element={
-              isAuthenticated ? (
-                <Profile
-                  isAuthenticated={isAuthenticated}
-                  onLogout={handleLogout}
-                />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route
-            path="/register"
-            element={<Register onRegister={handleRegister} />}
-          />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <ShopContextProvider>
+        <BrowserRouter>
+          <Header />
+          <NavBar />
+          <Routes>
+            <Route index element={<Homepage />} />
+            <Route path="/home" element={<Homepage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/women" element={<Women />} />
+            <Route path="/men" element={<Men />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wallet" element={<Wallet />} />
+            <Route path="/product" element={<Product />}>
+              <Route path=":productId" element={<Product />} />
+            </Route>
+            <Route
+              path="/profile"
+              element={
+                isAuthenticated ? (
+                  <Profile
+                    isAuthenticated={isAuthenticated}
+                    onLogout={handleLogout}
+                  />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route path="/login" element={<Login onLogin={handleLogin} />} />
+            <Route
+              path="/register"
+              element={<Register onRegister={handleRegister} />}
+            />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </ShopContextProvider>
     </div>
   );
 }
