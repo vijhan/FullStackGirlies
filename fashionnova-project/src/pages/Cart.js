@@ -25,6 +25,7 @@ const Cart = () => {
                 <h3 className="cart-item-name">{item.name}</h3>
                 <p className="cart-item-price">${item.new_price}</p>{" "}
                 {/* Use `new_price` for display */}
+                <p className="cart-item-size">Size: {item.size}</p>
                 <p className="cart-item-quantity">Quantity: {item.quantity}</p>
               </div>
             </div>

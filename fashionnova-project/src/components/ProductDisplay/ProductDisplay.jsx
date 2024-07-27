@@ -13,9 +13,11 @@ const ProductDisplay = (props) => {
   };
 
   const handleAddToCartClick = () => {
-    setIsButtonClicked(true);
-    addToCart(product);
-    setTimeout(() => setIsButtonClicked(false), 200);
+    if (selectedSize) {
+      setIsButtonClicked(true);
+      addToCart(product, selectedSize);
+      setTimeout(() => setIsButtonClicked(false), 200);
+    }
   };
 
   return (
