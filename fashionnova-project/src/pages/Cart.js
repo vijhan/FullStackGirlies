@@ -1,15 +1,10 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../context/ShopContext";
 import "./CSS/Cart.css";
+import StripeContainer from "../components/CheckoutForm";
 
 const Cart = () => {
-  const { cart, removeFromCart } = useContext(ShopContext);
-
-  const getTotal = () => {
-    return cart
-      .reduce((acc, item) => acc + item.new_price * item.quantity, 0)
-      .toFixed(2);
-  };
+  const { cart, removeFromCart, getTotalCartAmount } = useContext(ShopContext);
 
   return (
     <div className="cart">
@@ -22,24 +17,25 @@ const Cart = () => {
             <div key={index} className="cart-item">
               <img src={item.image} alt={item.name} className="cart-item-img" />
               <div className="cart-item-details">
-                <h3 className="cart-item-name">{item.name}</h3>
-                <p className="cart-item-price">${item.new_price}</p>{" "}
-                {/* Use `new_price` for display */}
-                <p className="cart-item-size">Size: {item.size}</p>
+                <h3 className="cart-item-name">
+                  {item.name} - {item.size}
+                </h3>
+                <p className="cart-item-price">${item.price}</p>
                 <p className="cart-item-quantity">Quantity: {item.quantity}</p>
+                <button
+                  onClick={() => removeFromCart(item.id, item.size)}
+                  className="remove-button"
+                >
+                  Remove
+                </button>
               </div>
-              <button
-                onClick={() => removeFromCart(item.id, item.size)}
-                className="cart-item-remove"
-              >
-                X
-              </button>
             </div>
           ))
         )}
       </div>
       <div className="cart-summary">
-        <h3>Total: ${getTotal()}</h3>
+        <h3>Total: ${getTotalCartAmount().toFixed(2)}</h3>
+        <StripeContainer />
       </div>
     </div>
   );

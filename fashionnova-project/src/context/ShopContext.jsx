@@ -1,37 +1,31 @@
 import React, { createContext, useState, useEffect } from "react";
-// import all_product from "../components/Assets/data";
 import { getProducts } from "../Services/ProductService";
+
 export const ShopContext = createContext(null);
 
 const ShopContextProvider = (props) => {
   const [cart, setCart] = useState([]);
   const [all_product, setProducts] = useState([]);
-    
-    useEffect(() => {
-        async function fetchProducts() {
-           const all_product = await getProducts();
-            setProducts(all_product);
-        }
-        fetchProducts();
-    }, [])
-  
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const all_product = await getProducts();
+      setProducts(all_product);
+    }
+    fetchProducts();
+  }, []);
 
   const sortByPriceDecreasing = () => {
     setCart((prevCart) => {
-        return prevCart.sort((a,b) => {
-                return b.new_price - a.new_price;
-        })
-    })
-  }
+      return [...prevCart].sort((a, b) => b.new_price - a.new_price);
+    });
+  };
 
   const sortByPriceAscending = () => {
     setCart((prevCart) => {
-        return prevCart.sort((a,b) => {
-            return a.new_price - b.new_price;
-        })
-    })
-    
-  }
+      return [...prevCart].sort((a, b) => a.new_price - b.new_price);
+    });
+  };
 
   const addToCart = (product, size) => {
     setCart((prevCart) => {
@@ -69,6 +63,12 @@ const ShopContextProvider = (props) => {
     });
   };
 
+  const getTotalCartAmount = () => {
+    return cart.reduce((total, item) => {
+      return total + item.new_price * item.quantity;
+    }, 0);
+  };
+
   const contextValue = {
     all_product,
     cart,
@@ -76,6 +76,7 @@ const ShopContextProvider = (props) => {
     removeFromCart,
     sortByPriceDecreasing,
     sortByPriceAscending,
+    getTotalCartAmount,
   };
 
   return (

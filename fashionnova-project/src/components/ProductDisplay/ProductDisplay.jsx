@@ -2,8 +2,7 @@ import React, { useState, useContext } from "react";
 import "./ProductDisplay.css";
 import { ShopContext } from "../../context/ShopContext";
 
-const ProductDisplay = (props) => {
-  const { product } = props;
+const ProductDisplay = ({ product }) => {
   const { addToCart } = useContext(ShopContext);
   const [selectedSize, setSelectedSize] = useState(null);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -20,19 +19,27 @@ const ProductDisplay = (props) => {
     }
   };
 
+  if (!product) {
+    return <div>Product information is unavailable.</div>;
+  }
+
   return (
     <div className="productdisplay">
       <div className="productdisplay-img">
-        <img className="productdisplay-main-img" src={product.image} alt="" />
+        <img
+          className="productdisplay-main-img"
+          src={product.image}
+          alt={product.name}
+        />
       </div>
       <div className="productdisplay-right">
         <h1>{product.name}</h1>
         <div className="productdisplay-right-prices">
           <div className="productdisplay-right-price-old">
-            OLD: ${product.old_price}
+            OLD: ${product.old_price || "N/A"}
           </div>
           <div className="productdisplay-right-price-new">
-            NEW: ${product.new_price}
+            NEW: ${product.new_price || "N/A"}
           </div>
         </div>
         <div className="productdisplay-right-size">
