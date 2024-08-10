@@ -7,7 +7,9 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 
-const stripePromise = loadStripe("your_test_publishable_key_here");
+const stripePromise = loadStripe(
+  "pk_test_51Pm2hrP9sM0O5bzsP9mGc6XjrEetTZabX3gKwOh6CHd9Wlo2ArEIwJBKDzyaJuO2SYDg82DpFdj52wsgYUnmGoSb00NNWzYWP8"
+);
 
 const CheckoutForm = () => {
   const stripe = useStripe();

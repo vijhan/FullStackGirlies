@@ -15,6 +15,7 @@ import Register from "./components/Register";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import ShopContextProvider from "../src/context/ShopContext";
 import Product from "./pages/Product";
+import StripeContainer from "./components/CheckoutForm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -64,6 +65,7 @@ function App() {
               path="/register"
               element={<Register onRegister={handleRegister} />}
             />
+            <Route path="/checkout" element={<StripeContainer />} /> {}
           </Routes>
           <Footer />
         </BrowserRouter>
